@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[My Octopress Blog]]></title>
+  <link href="http://suauis.github.com/atom.xml" rel="self"/>
+  <link href="http://suauis.github.com/"/>
+  <updated>2012-03-01T01:58:05+09:00</updated>
+  <id>http://suauis.github.com/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[new to Nemerle]]></title>
+    <link href="http://suauis.github.com/blog/2012/02/19/new-to-nemerle/"/>
+    <updated>2012-02-19T22:19:00+09:00</updated>
+    <id>http://suauis.github.com/blog/2012/02/19/new-to-nemerle</id>
+    <content type="html"><![CDATA[<h2>Nermeleはじめました。</h2>
+
+<p>Nermeleを使い始めたので、いろいろメモを書いておく。</p>
+
+<h2>Nermeleってなに？</h2>
+
+<p>NermeleはCLI(.NET, Mono)で動く静的型付けマルチパラダイム言語で、
+手続型、オブジェクト指向、関数型プログラミング言語の特徴をあわせもつ。
+最大の特徴は強力なマクロ。
+構文はC#に似ていて、O&#8217;Camlの構文を受け継いだF#よりは読みやすそうだ。</p>
+
+<h2>インストール</h2>
+
+<p>Windowsならたぶんインストーラですぐインストールできる。
+Visual Studioのアドインまで付いてくる。
+しかし僕はArch Linuxのユーザーなので、
+Linux + Monoな環境でのインストールを説明する。</p>
+
+<p>まずはGitHubにあるNemerleのレポジトリ(https://github.com/rsdn/nemerle)
+を見てみよう。
+README.mdには、</p>
+
+<blockquote><p>Nemerle can&#8217;t bootstrap itself on Mono, but can be used as binaries.</p></blockquote>
+
+<p>と書かれている……
+仕方がないのでバイナリを持ってきてインストールする。</p>
+
+<p>この記事を書いている時点での最新安定版は1.0.0.9832だ。
+バイナリの入ったzipファイルをダウンロードしてくる。</p>
+
+<pre><code>wget https://github.com/downloads/rsdn/nemerle/NemerleBinaries-net-4.0-v1.0.0.9832.zip
+</code></pre>
+
+<p>ディレクトリnemerleにunzipしよう。</p>
+
+<pre><code>unzip NemerleBinaries-net-4.0-v1.0.0.9832.zip -d nemerle
+</code></pre>
+
+<p>このバイナリは.NETでビルドされたものだから、デバッグシンボルが.pdbファイルに
+入っている。Monoのデバッガでデバッグするためには、これを.mdbファイルに変換する。</p>
+
+<pre><code>cd nemerle
+for _filename in *.{dll,exe}; do 
+    pdb2mdb $_filename
+done
+</code></pre>
+
+<p>これで必要なものは揃った。</p>
+
+<p>できたバイナリを適当なところ、たとえば/opt/nemerleや/usr/lib/mono/nemerle、
+あるいはプロジェクトのディレクトリに依存ライブラリとして
+丸ごと入れてしまってもいいかもしれないが、
+そこにインストールしよう。
+環境変数Nemerleが必要になるので、説明の都合上、設定しておく。</p>
+
+<pre><code>export Nemerle=/opt/nemerle
+</code></pre>
+
+<p>さっきのバイナリをそこへコピーする。</p>
+
+<pre><code>mkdir $Nemerle
+sudo rsync -avHSXA nemerle/ $Nemerle
+</code></pre>
+
+<p>さらに環境変数nccを設定しよう。</p>
+
+<pre><code>export ncc=$Nemerle/ncc.exe
+</code></pre>
+
+<p>これで、次のコマンドラインでNemerleのコンパイラを起動できるようになった。</p>
+
+<pre><code>mono $ncc
+</code></pre>
+
+<p>環境変数NemerleはNemerleのプロジェクト(*.nproj)で参照されているようなので、
+ビルドにMSBuild（Monoなのでxbuild）を使う場合必要になる。
+環境変数を切り替えて複数のNemerleを共存させられるかもしれない。
+ともあれ、/etc/profile.d/nemerle.shみたいなファイルでログイン時に
+環境変数が設定されるようにしよう。</p>
+
+<p>さて、実際にNemerleのコードをコンパイルして実行してみよう。
+以下のようなmain.nというファイルを用意する。</p>
+
+<pre><code>using SC = System.Console; 
+SC.WriteLine("Hello, World! "); 
+</code></pre>
+
+<p>コンパイルする。</p>
+
+<pre><code>mono $ncc -t:exe -o:main.exe main.n
+</code></pre>
+
+<p>main.exeができるので、実行しよう。</p>
+
+<pre><code>mono main.exe # =&gt; Hello, World! 
+</code></pre>
+
+<p>おしまい。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[new to octopress]]></title>
+    <link href="http://suauis.github.com/blog/2012/02/19/new-to-octopress/"/>
+    <updated>2012-02-19T16:52:00+09:00</updated>
+    <id>http://suauis.github.com/blog/2012/02/19/new-to-octopress</id>
+    <content type="html"><![CDATA[<p>Octopressはじめました。</p>
+]]></content>
+  </entry>
+  
+</feed>
