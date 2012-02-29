@@ -4,7 +4,7 @@
   <title><![CDATA[notes by suauis]]></title>
   <link href="http://suauis.github.com/atom.xml" rel="self"/>
   <link href="http://suauis.github.com/"/>
-  <updated>2012-03-01T03:07:34+09:00</updated>
+  <updated>2012-03-01T03:13:01+09:00</updated>
   <id>http://suauis.github.com/</id>
   <author>
     <name><![CDATA[suauis]]></name>
@@ -40,6 +40,37 @@ export ncc=$Nemerle/ncc.exe
 修正点を見たい時には次のようにすればいい。</p>
 
 <pre><code>git diff sync-line master
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[NemerleのバイナリをGitHubにプッシュした]]></title>
+    <link href="http://suauis.github.com/blog/2012/03/01/nemerle-binary-installation-for-mono/"/>
+    <updated>2012-03-01T02:41:00+09:00</updated>
+    <id>http://suauis.github.com/blog/2012/03/01/nemerle-binary-installation-for-mono</id>
+    <content type="html"><![CDATA[<p>本家のレポジトリで配布されているNemerleでは、
+MonoのxbuildでNemerleのプロジェクトをビルドできない。
+そこでxbuildでビルドできるようにNemerle.MSBuild.targetを修正した。
+ついでにgitだけでバイナリをインストール・アップデートできるように、
+修正済のバイナリディストリビューションをGitHubにレポジトリを作ってプッシュした。</p>
+
+<p>次のようにすればNemerleをインストールできる。</p>
+
+<pre><code>_nemerle_destdir=&lt;Nemerleをインストールしたいディレクトリ&gt;
+git clone https://github.com/suauis/nemerle-binary.git _nemerle_destdir
+export Nemerle=$_nemerle_destdir/net-4.0
+export ncc=$Nemerle/ncc.exe
+</code></pre>
+
+<p>Windows用のインストーラで.NET 4.0向けでVisual Studio
+2010用のアドインがついてるのがNemerle1.1からだったので、安定版ではないが、
+このバイナリもあわせて1.1.666.0にしている。</p>
+
+<p>本家のバイナリディストリビューションはsync-lineブランチに入っている。
+修正点を見たい時には次のようにすればいい。</p>
+
+<pre><code>git diff origin/sync-line master
 </code></pre>
 ]]></content>
   </entry>
