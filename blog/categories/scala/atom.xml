@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Scala | notes by suauis]]></title>
   <link href="http://suauis.github.com/blog/categories/scala/atom.xml" rel="self"/>
   <link href="http://suauis.github.com/"/>
-  <updated>2012-03-04T00:54:44+09:00</updated>
+  <updated>2012-03-04T01:34:17+09:00</updated>
   <id>http://suauis.github.com/</id>
   <author>
     <name><![CDATA[suauis]]></name>
@@ -12,6 +12,19 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[ENSIMEのVim対応は全然ダメだった]]></title>
+    <link href="http://suauis.github.com/blog/2012/03/04/vim-ensime-not-working/"/>
+    <updated>2012-03-04T01:25:00+09:00</updated>
+    <id>http://suauis.github.com/blog/2012/03/04/vim-ensime-not-working</id>
+    <content type="html"><![CDATA[<p>ここにVim対応のENSIMEのフォークがあるのだが</p>
+
+<p><a href="https://github.com/MarcWeber/ensime">https://github.com/MarcWeber/ensime</a></p>
+
+<p>開発者はもうあまり興味がないらしく、開発が続いていない。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Back to Scala]]></title>
