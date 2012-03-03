@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Nemerle | notes by suauis]]></title>
   <link href="http://suauis.github.com/blog/categories/nemerle/atom.xml" rel="self"/>
   <link href="http://suauis.github.com/"/>
-  <updated>2012-03-04T00:47:17+09:00</updated>
+  <updated>2012-03-04T00:51:07+09:00</updated>
   <id>http://suauis.github.com/</id>
   <author>
     <name><![CDATA[suauis]]></name>
@@ -39,7 +39,7 @@ export ncc=$Nemerle/ncc.exe
 <p>本家のバイナリディストリビューションはsync-lineブランチに入っている。
 修正点を見たい時には次のようにすればいい。</p>
 
-<pre><code>git diff sync-line master
+<pre><code>git diff origin/sync-line master
 </code></pre>
 ]]></content>
   </entry>
