@@ -4,7 +4,7 @@
   <title><![CDATA[notes by suauis]]></title>
   <link href="http://suauis.github.com/atom.xml" rel="self"/>
   <link href="http://suauis.github.com/"/>
-  <updated>2012-03-03T22:03:52+09:00</updated>
+  <updated>2012-03-04T00:11:47+09:00</updated>
   <id>http://suauis.github.com/</id>
   <author>
     <name><![CDATA[suauis]]></name>
@@ -12,16 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[New to Clojure]]></title>
-    <link href="http://suauis.github.com/blog/2012/03/03/new-to-clojure/"/>
-    <updated>2012-03-03T22:01:00+09:00</updated>
-    <id>http://suauis.github.com/blog/2012/03/03/new-to-clojure</id>
-    <content type="html"><![CDATA[<p>Nemerleをやめたので、今度は
-Clojureを使ってみたいと思う。</p>
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[Leaving from Mono and Nemerle]]></title>
