@@ -4,7 +4,7 @@
   <title><![CDATA[notes by suauis]]></title>
   <link href="http://suauis.github.com/atom.xml" rel="self"/>
   <link href="http://suauis.github.com/"/>
-  <updated>2012-03-01T03:16:23+09:00</updated>
+  <updated>2012-03-03T21:52:20+09:00</updated>
   <id>http://suauis.github.com/</id>
   <author>
     <name><![CDATA[suauis]]></name>
@@ -12,6 +12,16 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Leaving from Mono and Nemerle]]></title>
+    <link href="http://suauis.github.com/blog/2012/03/03/leaving-from-mono-and-nemerle/"/>
+    <updated>2012-03-03T21:49:00+09:00</updated>
+    <id>http://suauis.github.com/blog/2012/03/03/leaving-from-mono-and-nemerle</id>
+    <content type="html"><![CDATA[<p>いろいろ作業した結果、
+MonoとNemerleを使うのをやめることにした。理由はいつか書く。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[NemerleのバイナリをGitHubにプッシュした]]></title>

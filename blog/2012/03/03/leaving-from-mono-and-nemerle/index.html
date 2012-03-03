@@ -5,14 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>NemerleのバイナリをGitHubにプッシュした - notes by suauis</title>
+  <title>Leaving from Mono and Nemerle - notes by suauis</title>
   <meta name="author" content="suauis">
 
   
-  <meta name="description" content="本家のレポジトリで配布されているNemerleでは、
-MonoのxbuildでNemerleのプロジェクトをビルドできない。
-そこでxbuildでビルドできるようにNemerle.MSBuild.targetを修正した。
-ついでにgitだけでバイナリをインストール・アップデートできるように、 &hellip;">
+  <meta name="description" content="いろいろ作業した結果、
+MonoとNemerleを使うのをやめることにした。理由はいつか書く。
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,7 +20,7 @@ MonoのxbuildでNemerleのプロジェクトをビルドできない。
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://suauis.github.com/blog/2012/03/01/push-modified-nemerle-binary-distribution-to-github-repos">
+  <link rel="canonical" href="http://suauis.github.com/blog/2012/03/03/leaving-from-mono-and-nemerle">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -68,7 +67,7 @@ MonoのxbuildでNemerleのプロジェクトをビルドできない。
   
   <header>
     
-      <h1 class="entry-title">NemerleのバイナリをGitHubにプッシュした</h1>
+      <h1 class="entry-title">Leaving From Mono and Nemerle</h1>
     
     
       <p class="meta">
@@ -84,36 +83,15 @@ MonoのxbuildでNemerleのプロジェクトをビルドできない。
   
 
 
-<time datetime="2012-03-01T02:41:00+09:00" pubdate data-updated="true">Mar 1<span>st</span>, 2012</time>
+<time datetime="2012-03-03T21:49:00+09:00" pubdate data-updated="true">Mar 3<span>rd</span>, 2012</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>本家のレポジトリで配布されているNemerleでは、
-MonoのxbuildでNemerleのプロジェクトをビルドできない。
-そこでxbuildでビルドできるようにNemerle.MSBuild.targetを修正した。
-ついでにgitだけでバイナリをインストール・アップデートできるように、
-修正済のバイナリディストリビューションをGitHubにレポジトリを作ってプッシュした。</p>
-
-<p>次のようにすればNemerleをインストールできる。</p>
-
-<pre><code>_nemerle_destdir=&lt;Nemerleをインストールしたいディレクトリ&gt;
-git clone https://github.com/suauis/nemerle-binary.git _nemerle_destdir
-export Nemerle=$_nemerle_destdir/net-4.0
-export ncc=$Nemerle/ncc.exe
-</code></pre>
-
-<p>Windows用のインストーラで.NET 4.0向けでVisual Studio
-2010用のアドインがついてるのがNemerle1.1からだったので、安定版ではないが、
-このバイナリもあわせて1.1.666.0にしている。</p>
-
-<p>本家のバイナリディストリビューションはsync-lineブランチに入っている。
-修正点を見たい時には次のようにすればいい。</p>
-
-<pre><code>git diff origin/sync-line master
-</code></pre>
+<div class="entry-content"><p>いろいろ作業した結果、
+MonoとNemerleを使うのをやめることにした。理由はいつか書く。</p>
 </div>
 
 
@@ -136,21 +114,15 @@ export ncc=$Nemerle/ncc.exe
   
 
 
-<time datetime="2012-03-01T02:41:00+09:00" pubdate data-updated="true">Mar 1<span>st</span>, 2012</time>
+<time datetime="2012-03-03T21:49:00+09:00" pubdate data-updated="true">Mar 3<span>rd</span>, 2012</time>
       
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/nemerle/'>Nemerle</a>
-  
-</span>
 
 
     </p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://suauis.github.com/blog/2012/03/01/push-modified-nemerle-binary-distribution-to-github-repos/" data-via="suauis_hacking" data-counturl="http://suauis.github.com/blog/2012/03/01/push-modified-nemerle-binary-distribution-to-github-repos/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://suauis.github.com/blog/2012/03/03/leaving-from-mono-and-nemerle/" data-via="suauis_hacking" data-counturl="http://suauis.github.com/blog/2012/03/03/leaving-from-mono-and-nemerle/" >Tweet</a>
   
   
   
@@ -159,10 +131,8 @@ export ncc=$Nemerle/ncc.exe
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/02/19/new-to-nemerle/" title="Previous Post: new to Nemerle">&laquo; new to Nemerle</a>
+        <a class="basic-alignment left" href="/blog/2012/03/01/push-modified-nemerle-binary-distribution-to-github-repos/" title="Previous Post: NemerleのバイナリをGitHubにプッシュした">&laquo; NemerleのバイナリをGitHubにプッシュした</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2012/03/03/leaving-from-mono-and-nemerle/" title="Next Post: Leaving from Mono and Nemerle">Leaving from Mono and Nemerle &raquo;</a>
       
     </p>
   </footer>
