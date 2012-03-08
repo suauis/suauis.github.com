@@ -4,7 +4,7 @@
   <title><![CDATA[notes by suauis]]></title>
   <link href="http://suauis.github.com/atom.xml" rel="self"/>
   <link href="http://suauis.github.com/"/>
-  <updated>2012-03-04T01:34:17+09:00</updated>
+  <updated>2012-03-09T02:22:38+09:00</updated>
   <id>http://suauis.github.com/</id>
   <author>
     <name><![CDATA[suauis]]></name>
@@ -12,6 +12,168 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Back to the Scala world Part1]]></title>
+    <link href="http://suauis.github.com/blog/2012/03/09/back-to-the-scala-world-part1/"/>
+    <updated>2012-03-09T00:57:00+09:00</updated>
+    <id>http://suauis.github.com/blog/2012/03/09/back-to-the-scala-world-part1</id>
+    <content type="html"><![CDATA[<p>Scalaに戻ることにしたので、作業記録を書く。</p>
+
+<h2>sbt</h2>
+
+<p>Scalaのビルドツールといえばsbt。sbtを使おう。</p>
+
+<p>僕はArch Linuxを使っている。AURにsbtがあるので、それをインストールしよう。</p>
+
+<pre><code>packer -S --noconfirm sbt
+</code></pre>
+
+<p>packerはpacmanのAUR対応なラッパー。他のラッパーを使っているなら、
+そのラッパーでsbtをインストールしよう。</p>
+
+<p>システムにインストールしたsbtでなく、独立したsbtを使いたいかもしれない。
+たとえばTwitterのScalaのライブラリは、ビルドにsbt 0.7.5を要求するようだ。
+sbtは0.10以降とそれ以前で互換性がない。0.10以降はほぼソース互換だそうだ。
+そこで必要なバージョンのsbt-launch.jarを手に入れて、</p>
+
+<pre><code>java -Xmx512M -jar &lt;sbt-launch.jarのパス&gt; &lt;sbtのオプション&gt;
+</code></pre>
+
+<p>とすれば良い（ヒープの最大容量を指定するのは、
+メモリをたくさん使うから）。0.7.xのバイナリは
+<a href="http://code.google.com/p/simple-build-tool/downloads/list">Google Code</a>に、
+0.9.x以降は
+<a href="http://typesafe.artifactoryonline.com/typesafe/ivy-releases/org.scala-tools.sbt/sbt-launch/">TypeSafeのivyレポジトリ</a>
+にあるようだ。</p>
+
+<p>ここではAURからインストールしたsbt 0.11.2を前提にする。
+ひとまずbuild.sbtと、ビルドしたいソースコードがあれば良い。
+ソースコードのディレクトリ構成はデフォルトでMavenと同じ。
+たとえば次のようにする。</p>
+
+<pre><code>&lt;プロジェクトのルート&gt;/build.sbt
+&lt;プロジェクトのルート&gt;/src/main/scala/com/github/suauis/Main.scala
+</code></pre>
+
+<p>build.sbtにはプロジェクトの名前、バージョン、依存するScalaのバージョンを書く。</p>
+
+<div><script src='https://gist.github.com/2002017.js?file=build.sbt'></script>
+<noscript><pre><code>name := &quot;suauis-example&quot;
+
+version := &quot;1.0&quot;
+
+scalaVersion := &quot;2.9.1&quot;
+
+</code></pre></noscript></div>
+
+
+
+
+<div><script src='https://gist.github.com/2002017.js?file=Main.scala'></script>
+<noscript><pre><code>package com.github.suauis
+
+object Main {
+  def main(args: Array[String]): Unit = {
+    println(&quot;Hello, World!&quot;)
+  }
+}
+</code></pre></noscript></div>
+
+
+<p>プロジェクトのルートディレクトリでsbtを実行するとプロンプトに入る。
+runというコマンドでプログラムを実行できる。</p>
+
+<pre><code>sbt
+&gt; run com.github.suauis.Main
+Hello, World!
+</code></pre>
+
+<p>プロンプトを使いたくないときは、sbtの引数としてコマンドを与えてやれば良い。</p>
+
+<pre><code>sbt run com.github.suauis.Main
+Hello, World!
+</code></pre>
+
+<p>packageでjarを作れる。reloadで設定ファイルの再読み込み。
+updateで依存ライブラリのダウンロード。</p>
+
+<h2>TwitterのUtilライブラリ</h2>
+
+<p>TwitterはUtilというScalaで書かれたライブラリを出している。
+evalとかloggingとかreflectとかcollectionsとかあってなかなか良い。
+twitter-utilを使おう。</p>
+
+<h2>com.twitter.logging Part1</h2>
+
+<p>まずはloggingを使ってみよう。
+TwitterはMavenレポジトリを持ってるのでそれをresolverに追加する。
+そしてutil-loggingライブラリを依存ライブラリに追加する。
+sbtの場合、build.sbtを次のようにする。</p>
+
+<div><script src='https://gist.github.com/2002115.js?file=build.sbt'></script>
+<noscript><pre><code>name := &quot;suauis-util&quot;
+
+version := &quot;1.0&quot;
+
+scalaVersion := &quot;2.9.1&quot;
+
+resolvers ++= Seq(&quot;twitter&quot; at &quot;http://maven.twttr.com/&quot;)
+
+libraryDependencies ++= {
+    Seq(&quot;com.twitter&quot; % &quot;util-logging_2.9.1&quot; % &quot;2.0.0&quot;
+    )
+}
+</code></pre></noscript></div>
+
+
+<p>アーティファクト名がutil-logging_2.9.1となっている。
+TwitterはデフォルトでScalaの2.8系を使っているらしく、
+2.9系は別になっているようだ。
+Scalaはマイナーバージョンが変わるたびに
+バイナリ互換性がなくなる（事が多い）ので、
+依存するScalaのバージョンを明示してしまった方がいいのだろう。
+sbtで作られるjarのファイル名も&lt;プロジェクトの名前>_&lt;Scalaのバージョン>.jar
+みたいになっている。</p>
+
+<p>ひとまずHello, World!をコンソールに出力してみる。</p>
+
+<div><script src='https://gist.github.com/2002115.js?file=Main.scala'></script>
+<noscript><pre><code>package com.github.suauis
+import com.twitter.logging.Logger
+import com.twitter.logging.config._
+
+object Main {
+  private[this] val config = new LoggerConfig{
+    node = &quot;&quot;
+    level = Level.INFO
+    handlers = new ConsoleHandlerConfig{
+    }
+  }
+  config()
+  private[this] val log = Logger.get(getClass()) 
+  def main(args: Array[String]): Unit = {
+    log.info(&quot;Hello, World! &quot;)
+  }
+
+}
+</code></pre></noscript></div>
+
+
+<p>LoggerConfigを使ってログの出力先を設定する。
+configするたびに出力先が追加される。
+今までに追加した出力先を消してしまいたい時は次のようにする。</p>
+
+<pre><code>Logger.clearHandlers()
+</code></pre>
+
+<p>ConsoleHandlerConfigは標準エラー出力にログを出力する。
+他にFileHandlerConfig、SyslogHandlerConfig、ScribeHandlerConfig、
+TrottledHandlerConfigがある。</p>
+
+<p>つづく。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[ENSIMEのVim対応は全然ダメだった]]></title>
